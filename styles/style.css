@@ -1,5 +1,348 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
 .page {
-  /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  color: var(--text-color, #f1b2ce);
+  font-family: var(--main-font, monospace);
+  font-size: 18px;
+  line-height: 1.3;
+  background-color: var(--bg-color, #000026);
+  background-image: var(--bg-img, url(../images/cover-image-dark.png));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  block-size: 100vh;
+}
+
+.title-decor {
+  color: var(--title-text-color);
+  font-weight: bold;
+  font-size: inherit;
+  background-color: var(--title-bg-color);
+}
+
+.decorated-zone::before {
+  content: "";
+  position: absolute;
+  align-self: end;
+  border-inline-end: 1px solid var(--accent-color);
+  border-block-start: 1px solid var(--accent-color);
+  block-size: 25px;
+  inline-size: 25px;
+  inset-inline-end: 0;
+  inset-block-start: var(--page-padding);
+}
+
+.decorated-zone::after {
+  content: "";
+  position: absolute;
+  border-inline-start: 1px solid var(--accent-color);
+  border-block-end: 1px solid var(--accent-color);
+  block-size: 25px;
+  inline-size: 25px;
+  inset-inline-start: 0;
+  inset-block-end: var(--page-padding);
+}
+
+.rec {
+  position: absolute;
+  color: var(--accent-color);
+  line-height: 25px;
+  text-transform: uppercase;
+  inset-block-end: calc(100% - 25px - var(--page-padding));
+  inset-inline-start: calc(100% - 60px);
+}
+
+.rec::after {
+  content: "";
+  display: inline-block;
+  margin-inline-start: 10px;
+  margin-block-end: 2px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  filter: drop-shadow(0px 0px 4px var(--text-shadow-color));
+  inline-size: 9px;
+  block-size: 9px;
+}
+
+.heading-title {
+  color: var(--heading-text-color);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  line-height: 0.825;
+  text-transform: lowercase;
+  text-shadow: 4px 4px 0 var(--text-shadow-color);
+}
+
+.header {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  align-items: center;
+  margin-inline: var(--page-padding);
+  padding-block: 10px;
+  min-block-size: 100vh;
+}
+
+.header__theme-menu {
+  justify-self: end;
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__theme-menu-item {
+  block-size: 26px;
+}
+
+.header__theme-menu-button {
+  border: none;
+  padding-inline: 13px;
+  color: var(--accent-color);
+  line-height: 1;
+  text-transform: lowercase;
+  background-color: transparent;
+  block-size: 100%;
+}
+
+.header__theme-menu-button_active {
+  outline: 1px solid var(--accent-color);
+  pointer-events: none;
+}
+
+.header__theme-menu-button:hover {
+  outline: 1px solid rgba(var(--button-hover-color), 0.4);
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
+}
+
+.header__theme-menu-button:focus-visible {
+  box-shadow: 0 1px 0 var(--accent-color);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  margin-inline: var(--page-padding);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.section__title {
+  color: var(--accent-color);
+  font-size: inherit;
+}
+
+.section__block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.section__block .section__text-block-title {
+  font-weight: normal;
+}
+
+.text-link {
+  text-shadow: 2px 2px 0 var(--link-shadow-color);
+}
+
+.text-link:hover {
+  border-bottom: 1px solid var(--text-color);
+}
+
+.text-link:focus {
+  outline: none;
+}
+
+.text-link:focus-visible {
+  outline: 1px solid var(--text-color);
+}
+
+.section__text-block-title {
+  margin-block-end: 10px;
+}
+
+.section-images {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.section-images .section__title {
+  color: var(--title-text-color);
+}
+
+.section-images__contrainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+}
+
+.section-images__contrainer-item {
+  object-fit: cover;
+  object-position: center;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-inline: var(--page-padding);
+  padding-block: 10px;
+  min-block-size: 100vh;
+}
+
+@media screen and (width >= 768px) {
+  :root {
+    --page-padding: 20px;
+  }
+
+  .heading-title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
+  .page {
+    row-gap: 60px;
+  }
+
+  .main {
+    row-gap: 80px;
+  }
+
+  .header {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .header__theme-menu {
+    grid-column: 2 / -1;
+    align-self: end;
+    margin-block-end: 56px;
+  }
+
+  .header__title {
+    position: relative;
+    grid-column: 1 / -1;
+    inset-inline-end: 20px;
+  }
+
+  .header__subtitle {
+    grid-column: 2 / -1;
+    align-self: flex-start;
+    margin-block-start: 45px;
+  }
+
+  .section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 40px;
+  }
+
+  .section-why .section__text-block {
+    grid-column: 2 / -1;
+  }
+
+  .section-what .section__text-block {
+    grid-column: 1 / -1;
+  }
+
+  .section-how {
+    grid-template-columns: 1fr 2fr;
+    column-gap: 20px;
+  }
+
+  .section-images {
+    row-gap: 20px;
+  }
+
+  .sunset {
+    grid-area: sunset;
+  }
+
+  .ice-cream {
+    grid-area: ice-cream;
+  }
+
+  .tape {
+    grid-area: tape;
+  }
+
+  .books {
+    grid-area: books;
+  }
+
+  .street {
+    grid-area: street;
+  }
+
+  .section-images__contrainer {
+    grid-template-columns: auto;
+    grid-template-areas:
+      "sunset sunset ice-cream"
+      "tape books ice-cream"
+      "tape street street";
+    gap: 20px;
+  }
+}
+
+@media screen and (width >= 1024px) {
+  .page {
+    margin-inline: auto;
+  }
+
+  .header {
+    padding-block-start: 20px;
+  }
+
+  .header__theme-menu {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: flex-start;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: row;
+  }
+
+  .header__subtitle {
+    margin-block-start: 51px;
+  }
+
+  .section {
+    column-gap: 10px;
+  }
+
+  .section-why {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .section-what {
+    column-gap: 20px;
+  }
+
+  .section-what .section__title {
+    grid-column: 1 / -1;
+    inline-size: calc((100% - 40px) / 3);
+  }
+
+  .section-what .section__text-block {
+    grid-column: auto;
+  }
 }
