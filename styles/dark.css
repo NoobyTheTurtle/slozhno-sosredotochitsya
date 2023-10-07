@@ -18,5 +18,5 @@
 }
 
 .page.theme_dark .rec {
-  display: block;
+  display: flex;
 }
